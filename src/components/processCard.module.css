@@ -1,0 +1,36 @@
+.wrapper {
+  margin: 8px;
+  overflow: hidden;
+  border-radius: 5px;
+  display: flex;
+}
+
+.card_wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.progress_indicator {
+  background-color: green;
+  height: 3px;
+}
+
+.card {
+  padding: 8px 16px;
+  background-color: white;
+  display: flex;
+  font-size: 14px;
+  border-radius: 0 0 5px 5px;
+}
+
+.card span {
+  font-weight: bold;
+}
+
+.progress_value {
+  font-size: 12px;
+  font-weight: bold;
+  color: green;
+  margin: auto;
+  margin-left: 12px;
+}

@@ -1,0 +1,21 @@
+.timeline {
+  display: flex;
+  margin: 2px;
+  padding-right: 6px;
+}
+
+.header {
+  border-radius: 0 !important;
+  border-bottom: 1px solid rgba(51, 81, 189, 0.1);
+}
+
+.box {
+  width: 20px;
+  height: 20px;
+  border-radius: 3px;
+  font-size: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  flex-shrink: 0;
+}

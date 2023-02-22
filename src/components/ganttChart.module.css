@@ -1,0 +1,43 @@
+.chart {
+  display: flex;
+  margin: 12px;
+  flex-wrap: nowrap;
+}
+
+.timelines {
+  background-color: rgb(238, 245, 255);
+  padding: 5px 3px;
+  margin: 8px;
+  border-radius: 5px;
+  display: inline-flex;
+  flex-direction: column;
+  overflow-x: scroll;
+  max-width: calc(100% - 24px);
+}
+
+.timelines::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+.timelines::-webkit-scrollbar-thumb {
+  border-radius: 5px;
+  background-color: rgb(126, 172, 235);
+}
+
+.left_panel {
+  background-color: rgb(238, 245, 255);
+  display: inline-flex;
+  min-width: max-content;
+  align-items: flex-end;
+  flex-direction: column;
+  margin: 8px;
+  padding: 5px 3px;
+  border-radius: 5px;
+}
+
+.left_panel p {
+  margin: 4px;
+  font-weight: normal;
+  font-size: 12px;
+}
