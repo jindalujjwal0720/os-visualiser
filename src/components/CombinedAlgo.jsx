@@ -14,28 +14,28 @@ export default function CombinedAlgo() {
       burstTime: 4,
       arrivalTime: 0,
       executedTime: 0,
-      priority: 5,
+      priority: 1,
     }),
     new Process({
       id: 2,
       burstTime: 3,
-      arrivalTime: 5,
+      arrivalTime: 0,
       executedTime: 0,
       priority: 1,
     }),
     new Process({
       id: 3,
       burstTime: 5,
-      arrivalTime: 2,
+      arrivalTime: 0,
       executedTime: 0,
-      priority: 3,
+      priority: 1,
     }),
     new Process({
       id: 4,
       burstTime: 5,
-      arrivalTime: 2,
+      arrivalTime: 0,
       executedTime: 0,
-      priority: 2,
+      priority: 1,
     }),
   ]);
   const timeQuanta = 2;
@@ -46,6 +46,7 @@ export default function CombinedAlgo() {
     // this priority should be changed to change the algorithm
     let tempGantt = [],
       tempProcesses = [...processes];
+    tempProcesses.sort((a, b) => a.arrivalTime - b.arrivalTime);
     let c = 0;
     // console.log(pq);
     // console.log(tempProcesses);
@@ -60,7 +61,8 @@ export default function CombinedAlgo() {
         )
           pq.enqueue(process, process.priority);
       }
-      //   console.log(pq);
+      console.log(pq.items.map((item) => item.element.id));
+      console.log(c);
       c += 1;
       if (pq.isEmpty()) {
         tempGantt.push(0);
@@ -90,12 +92,10 @@ export default function CombinedAlgo() {
         tempGantt.push(current.id);
         c += 1;
       }
+      c -= 1;
     }
     // console.log(tempGantt);
-    for (let p in executedTime) {
-      console.log(p);
-      console.log(executedTime[p]);
-    }
+    console.log(c);
     return tempGantt;
   };
 
