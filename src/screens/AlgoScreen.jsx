@@ -106,11 +106,11 @@ export const AlgoScreen = ({ algorithmName }) => {
           <div className={styles.leftCenter + ` ${styles.blur}`}>
             <h2>
               <span className={styles.h2span}>Average Waiting Time: </span>
-              {avgWaitingTime.toPrecision(6)} s
+              {avgWaitingTime && avgWaitingTime.toPrecision(6)} s
             </h2>
             <h2>
               <span className={styles.h2span}>Average Turn-around Time: </span>
-              {avgTurnaroundTime.toPrecision(6)} s
+              {avgTurnaroundTime && avgTurnaroundTime.toPrecision(6)} s
             </h2>
           </div>
           <div className={styles.leftBottom}>
@@ -194,7 +194,7 @@ export const AlgoScreen = ({ algorithmName }) => {
                 {processes &&
                   processes.map(({ waitingTime: wt }, index) => (
                     <div key={index} className={styles.tableCell}>
-                      {wt == 0 ? wt : wt > 1e5 || wt < 0 ? `-` : `${wt} s`}
+                      {wt === 0 ? wt : wt > 1e5 || wt < 0 ? `-` : `${wt} s`}
                     </div>
                   ))}
               </div>
