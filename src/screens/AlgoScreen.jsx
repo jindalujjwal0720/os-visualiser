@@ -3,12 +3,16 @@ import styles from "./algoscreen.module.css";
 import { getFCFS_States } from "../compute/FCFS";
 import { getPriorityNP_States } from "../compute/PriorityNP";
 import { getPriorityP_States } from "../compute/PriorityP";
+import { getRoundRobin_States } from "../compute/RoundRobin";
+import { getSJFP_States } from "../compute/SJFP";
+import { getSJFNP_States } from "../compute/SJFNP";
 import { useLocation } from "react-router";
 import { Process } from "../models/process";
 
-export const AlgoScreen = ({ algorithmName }) => {
+export const AlgoScreen = () => {
   const location = useLocation();
-  algorithmName = location.state.algorithm;
+  const algorithmName = location.state.algorithm;
+  const quantum = location.state.quantum;
   const [states, setStates] = useState([]);
   const [stateIndex, setStateIndex] = useState(-1);
   const [processes, setProcesses] = useState([]);
@@ -31,6 +35,15 @@ export const AlgoScreen = ({ algorithmName }) => {
         break;
       case "Priority NP":
         statesTemp = getPriorityNP_States(randomProcesses);
+        break;
+      case "Round Robin":
+        statesTemp = getRoundRobin_States(randomProcesses, quantum);
+        break;
+      case "SJFP":
+        statesTemp = getSJFP_States(randomProcesses);
+        break;
+      case "SJFNP":
+        statesTemp = getSJFNP_States(randomProcesses);
         break;
     }
 
