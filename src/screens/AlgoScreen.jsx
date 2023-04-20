@@ -24,7 +24,9 @@ export const AlgoScreen = () => {
   const toggleRun = () => setRerun((rerun) => !rerun);
 
   useEffect(() => {
-    const randomProcesses = generateRandomProcesses(location.state.count);
+  
+    const randomProcesses =JSON.parse(JSON.stringify(location.state.inputProcesses))
+    console.log(randomProcesses);
     let statesTemp;
     switch (location.state.algorithm) {
       case "FCFS":
@@ -236,19 +238,4 @@ export const AlgoScreen = () => {
       </div>
     </div>
   );
-};
-
-const generateRandomProcesses = (count) => {
-  const processes = [];
-  for (let i = 0; i < count; i++) {
-    const process = new Process({
-      id: i + 1,
-      burstTime: Math.floor(Math.random() * 4 + 4), // random between 4 and 8
-      arrivalTime: Math.floor(Math.random() * 10), // random between 0 and 10
-      executedTime: 0,
-      priority: Math.floor(Math.random() * 10), // random between 0 and 10
-    });
-    processes.push(process);
-  }
-  return JSON.parse(JSON.stringify(processes));
 };

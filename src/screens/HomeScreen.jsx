@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import styles from "./homescreen.module.css";
 import { Link } from "react-router-dom";
+import { Process } from "../models/process";
+
 
 export const HomeScreen = () => {
   const [algorithm, setAlgorithm] = useState("FCFS");
@@ -63,6 +65,20 @@ export const HomeScreen = () => {
             ></input>
           </h2>
         )}
+
+
+
+        <Link
+          to="custominput"
+          style={{textDecoration:"none"}}
+          state={{
+            algorithm: algorithm,
+            count: count,
+            quantum: quantum,
+          }}
+        >
+          <div className={styles.button}>Enter Input</div>
+        </Link>
         <Link
           to="/algo"
           style={{ textDecoration: "none" }}
@@ -70,11 +86,28 @@ export const HomeScreen = () => {
             algorithm: algorithm,
             count: count,
             quantum: quantum,
+            inputProcesses: generateRandomProcesses(count)
           }}
         >
-          <div className={styles.button}>Visualise</div>
+          <div className={styles.button}>Visualise Random</div>
         </Link>
-      </div>
+        </div>
+
     </div>
   );
+};
+
+const generateRandomProcesses = (count) => {
+  const processes = [];
+  for (let i = 0; i < count; i++) {
+    const process = new Process({
+      id: i + 1,
+      burstTime: Math.floor(Math.random() * 4 + 4), // random between 4 and 8
+      arrivalTime: Math.floor(Math.random() * 10), // random between 0 and 10
+      executedTime: 0,
+      priority: Math.floor(Math.random() * 10), // random between 0 and 10
+    });
+    processes.push(process);
+  }
+  return JSON.parse(JSON.stringify(processes));
 };

@@ -7,6 +7,7 @@ import { ProcessInput } from "./components/ProcessInput";
 import ProcessQueue from "./components/ProcessQueue";
 import { AlgoScreen } from "./screens/AlgoScreen";
 import { HomeScreen } from "./screens/HomeScreen";
+import { InputScreen } from "./screens/InputScreen";
 import { BrowserRouter, HashRouter, Route, Routes } from "react-router-dom";
 
 export default function App() {
@@ -16,6 +17,7 @@ export default function App() {
         <Routes>
           <Route path="/" element={<HomeScreen />}></Route>
           <Route path="/algo" element={<AlgoScreen />}></Route>
+          <Route path="/custominput" element={<InputScreen/>}></Route>
         </Routes>
       </HashRouter>
     </div>
