@@ -239,18 +239,3 @@ export const AlgoScreen = () => {
     </div>
   );
 };
-
-const generateRandomProcesses = (count) => {
-  const processes = [];
-  for (let i = 0; i < count; i++) {
-    const process = new Process({
-      id: i + 1,
-      burstTime: Math.floor(Math.random() * 4 + 4), // random between 4 and 8
-      arrivalTime: Math.floor(Math.random() * 10), // random between 0 and 10
-      executedTime: 0,
-      priority: Math.floor(Math.random() * 10), // random between 0 and 10
-    });
-    processes.push(process);
-  }
-  return JSON.parse(JSON.stringify(processes));
-};

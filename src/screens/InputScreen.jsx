@@ -12,42 +12,17 @@ export const InputScreen = () =>{
     const algorithmName = location.state.algorithm;
     const quantum = location.state.quantum;
     const count = location.state.count;
-    const [processes,setProcesses] = useState(generateProcessesWithId(location.state.count));
+    const [processes,setProcesses] = useState(generateRandomProcesses(location.state.count));
     const onInputChange = (index,event,flag) =>{
         let process = JSON.parse(JSON.stringify(processes));
         if(flag === 1 ){
-          if(isNaN(event.target.value)){
-            let p = JSON.parseFloat(JSON.stringify(event.target.valueAsnumber));
-            process[index].priority.valueAsnumber = p;
-          }
-          else{
-            process[index].priority = event.target.value;
-          }
-          
+          process[index].priority = Number(event.target.value);
         }
         if(flag === 2){
-          if(isNaN(event.target.value)){
-            let p = JSON.parse(JSON.stringify(event.target.valueAsnumber));
-            let x =parseFloat(p);
-            console.log(x);
-            console.log(p+"\n hello")
-            process[index].arrivalTime.valueAsnumber = x;
-          }
-          else{
-            process[index].arrivalTime = event.target.value;
-          }
+          process[index].arrivalTime = Number(event.target.value);
         }
         if(flag ===3){
-          if(isNaN(event.target.value)){
-            let p = JSON.parse(JSON.stringify(event.target.valueAsnumber));
-            let x =parseFloat(p);
-            console.log(x);
-            console.log(p+"\n hello")
-            process[index].burstTime.valueAsnumber = x;
-          }
-          else{
-            process[index].burstTime = event.target.value;
-          }
+          process[index].burstTime = Number(event.target.value);
         }
         setProcesses(process);
         console.log("added");
@@ -81,7 +56,7 @@ export const InputScreen = () =>{
                         <input
                         className={styles.input}
                         placeholder="P"
-                        value= {String(input.priority)}
+                        value= {input.priority}
                         onChange={event => onInputChange(index,event,1)}
                       >
                       </input>
@@ -103,7 +78,7 @@ export const InputScreen = () =>{
                         <input
                         className={styles.input}
                         placeholder="AT"
-                        value= {String(input.arrivalTime)}
+                        value= {input.arrivalTime}
                         onChange={event => onInputChange(index,event,2)}
                       >
                       </input>
@@ -122,7 +97,7 @@ export const InputScreen = () =>{
                         <input
                         className={styles.input}
                         placeholder="BT"
-                        value={String(input.burstTime)}
+                        value={input.burstTime}
                         onChange={event => onInputChange(index,event,3)}
                       >
                       </input>
@@ -133,7 +108,7 @@ export const InputScreen = () =>{
             </div>
             </div>
             <Link
-          to="/custominput"
+          to="/algo"
           style={{ textDecoration: "none" }}
           state={{
             algorithm: algorithmName,
@@ -145,7 +120,6 @@ export const InputScreen = () =>{
           <div className={styles.button}>Visualise</div>
         </Link>
            </div>
-           
         </div>
 
       );
@@ -153,19 +127,19 @@ export const InputScreen = () =>{
 
 };
 
-const generateProcessesWithId = (count) => {
-    const processes = [];
-    for (let i = 0; i < count; i++) {
-      const process = new Process({
-        id: i + 1,
-        burstTime: 0,
-        arrivalTime: 0,
-        executedTime: 0,
-        priority: 0
-      });
-      processes.push(process);
-    }
-    return JSON.parse(JSON.stringify(processes));
-  };
+const generateRandomProcesses = (count) => {
+  const processes = [];
+  for (let i = 0; i < count; i++) {
+    const process = new Process({
+      id: i + 1,
+      burstTime: Math.floor(Math.random() * 4 + 4), // random between 4 and 8
+      arrivalTime: Math.floor(Math.random() * 10), // random between 0 and 10
+      executedTime: 0,
+      priority: Math.floor(Math.random() * 10), // random between 0 and 10
+    });
+    processes.push(process);
+  }
+  return JSON.parse(JSON.stringify(processes));
+};
 
   
