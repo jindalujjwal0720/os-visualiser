@@ -24,7 +24,9 @@ export const AlgoScreen = () => {
   const toggleRun = () => setRerun((rerun) => !rerun);
 
   useEffect(() => {
-    const randomProcesses = generateRandomProcesses(location.state.count);
+  
+    const randomProcesses =JSON.parse(JSON.stringify(location.state.inputProcesses))
+    console.log(randomProcesses);
     let statesTemp;
     switch (location.state.algorithm) {
       case "FCFS":
